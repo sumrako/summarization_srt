@@ -1,7 +1,6 @@
 import pytest
 from httpx import AsyncClient
 from unittest.mock import AsyncMock
-from dto import SubtitleDTO
 from main import app
 
 
@@ -14,16 +13,16 @@ async def test_get_subtitles():
         assert response.status_code == 200
         subtitles = response.json()
         assert len(subtitles) == 2
-        assert subtitles[0] == SubtitleDTO(
-            start="00:00:00,000",
-            end="00:00:02,500",
-            text="Welcome to the Example Subtitle File!"
-        )
-        assert subtitles[1] == SubtitleDTO(
-            start="00:00:03,000",
-            end="00:00:06,000",
-            text="This is a demonstration of SRT subtitles."
-        )
+        assert subtitles[0] == {
+            "start": "00:00:00,000",
+            "end": "00:00:02,500",
+            "text": "Welcome to the Example Subtitle File!"
+        }
+        assert subtitles[1] == {
+            "start": "00:00:03,000",
+            "end": "00:00:06,000",
+            "text": "This is a demonstration of SRT subtitles."
+        }
 
 
 @pytest.mark.asyncio
