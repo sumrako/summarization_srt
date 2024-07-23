@@ -1,0 +1,11 @@
+input_variables: [text]
+output_parser: null
+template: 'Выдели несколько главных фактов и мыслей из этого текста. Сформулируй каждый факт в виде одной строки.
+
+    
+"{text}"
+
+
+Основные несколько фактов:'
+template_format: f-string
+_type: prompt

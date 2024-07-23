@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "summarization-srt"
+version = "0.1.0"
+description = ""
+authors = ["Andrei Arnautov <aleksejtalitej@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiofiles = "^24.1.0"
+fastapi = "^0.111.1"
+pydantic-settings = "^2.3.4"
+langchain = "^0.2.10"
+pytest = "^8.3.1"
+pytest-asyncio = "^0.23.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
