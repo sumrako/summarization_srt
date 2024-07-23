@@ -1,10 +1,12 @@
 import re
 import aiofiles
 from typing import List
-from dto import SubtitleDTO, SummaryDTO
+from langchain.docstore.document import Document
 from langchain.base_language import BaseLanguageModel
 from langchain.prompts import load_prompt
 from langchain.chains.summarize import load_summarize_chain
+
+from dto import SubtitleDTO, SummaryDTO
 
 
 async def parse_srt(srt_file_path: str, count: int | None = None) -> List[SubtitleDTO]:
@@ -29,5 +31,6 @@ async def parse_srt(srt_file_path: str, count: int | None = None) -> List[Subtit
 async def summarize_text(text: str, prompt_file_path: str, llm_model: BaseLanguageModel) -> SummaryDTO:
     map_prompt = load_prompt(prompt_file_path)
     chain = load_summarize_chain(llm_model, chain_type="map_reduce", map_prompt=map_prompt)
-    summarized_text = await chain.arun(text)
+    docs = [Document(page_content=text)]
+    summarized_text = await chain.arun(docs)
     return SummaryDTO(summary=summarized_text)

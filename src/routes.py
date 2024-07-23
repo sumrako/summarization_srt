@@ -22,7 +22,7 @@ async def get_subtitles(
 async def get_summarize(
     srt_path: FilePath = Query(description="Путь к .srt файлу")
 ):
-    giga = GigaChat(credentials=GIGACHAT_CONFIG.gigachat_client_secret)
+    giga = GigaChat(credentials=GIGACHAT_CONFIG.gigachat_auth_data, verify_ssl_certs=False)
     srts = await parse_srt(srt_file_path=srt_path)
     text = ' '.join([item.text for item in srts])
     summarize_prompt_path = './prompts/summarize.yaml'
