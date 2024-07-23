@@ -21,7 +21,7 @@ async def get_subtitles(
 ):
     if not os.path.exists(srt_path):
         raise HTTPException(status_code=404, detail="Файл не найден")
-        
+
     return await parse_srt(srt_file_path=srt_path, count=count)
 
 
